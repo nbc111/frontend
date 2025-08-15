@@ -132,7 +132,7 @@ const Footer = () => {
           </Link>
         </Flex>
         <Text mt={ 3 } fontSize="xs">
-          Blockscout is a tool for inspecting and analyzing EVM based blockchains. Blockchain explorer for Ethereum Networks.
+          NBBlocks is a tool for inspecting and analyzing EVM based blockchains. Blockchain explorer for Ethereum Networks.
         </Text>
         <Box mt={ 6 } alignItems="start" textStyle="xs">
           { apiVersionUrl && (
@@ -146,7 +146,7 @@ const Footer = () => {
             </Text>
           ) }
           <Text>
-            Copyright { copy } Blockscout Limited 2023-{ (new Date()).getFullYear() }
+            Copyright { copy } NBBlocks Limited 2023-{ (new Date()).getFullYear() }
           </Text>
         </Box>
       </Box>
