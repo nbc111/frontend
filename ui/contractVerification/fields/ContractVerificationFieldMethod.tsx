@@ -80,7 +80,7 @@ const ContractVerificationFieldMethod = ({ methods }: Props) => {
 
   const tooltipContent = (
     <Box>
-      <span>Currently, Nbblocks supports { methods.length } methods:</span>
+      <span>Currently, NBBlocks supports { methods.length } methods:</span>
       <List.Root as="ol" pl={ 5 }>
         { methods.map(renderPopoverListItem) }
       </List.Root>
@@ -90,7 +90,7 @@ const ContractVerificationFieldMethod = ({ methods }: Props) => {
   return (
     <>
       <Heading level="2" mt={{ base: 10, lg: 6 }} gridColumn={{ lg: '1 / 3' }}>
-        Currently, Nbblocks supports { methods.length }{ nbsp }contract verification methods
+        Currently, NBBlocks supports { methods.length }{ nbsp }contract verification methods
         <Hint
           label={ tooltipContent }
           tooltipProps={{ interactive: true, contentProps: { textAlign: 'left' } }}
