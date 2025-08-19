@@ -180,11 +180,11 @@ const Chart = () => {
   return (
     <>
       <PageTitle
-        title={ info?.title || lineQuery.data?.info?.title || '' }
+        title={ info?.title.replace('ETH','NBC') || lineQuery.data?.info?.title.replace('ETH','NBC') || '' }
         mb={ 3 }
         isLoading={ isInfoLoading }
         backLink={ backLink }
-        secondRow={ info?.description || lineQuery.data?.info?.description }
+        secondRow={ info?.description?.replace('ETH','NBC') || lineQuery.data?.info?.description?.replace('ETH','NBC') }
         withTextAd
       />
       <Flex alignItems="center" justifyContent="space-between">
