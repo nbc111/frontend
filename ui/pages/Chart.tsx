@@ -267,7 +267,7 @@ const Chart = () => {
           isError={ lineQuery.isError }
           items={ items }
           title={ info?.title || '' }
-          units={ info?.units || undefined }
+          units={ info?.units?.replace('ETH','NBC') || undefined }
           isEnlarged
           isLoading={ lineQuery.isPlaceholderData }
           zoomRange={ zoomRange }
