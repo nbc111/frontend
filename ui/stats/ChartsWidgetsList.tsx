@@ -74,7 +74,7 @@ const ChartsWidgetsList = ({ filterQuery, isError, isPlaceholderData, charts, in
             >
               <Skeleton loading={ isPlaceholderData } mb={{ base: 3, lg: 4 }} display="inline-flex" alignItems="center" columnGap={ 2 } id={ section.id }>
                 <Heading level="2" id={ section.id }>
-                  { section.title }
+                  { section.title.replace('ETH', "NBC") }
                 </Heading>
                 { section.id === 'gas' && homeStatsQuery.data && homeStatsQuery.data.gas_prices && (
                   <GasInfoTooltip data={ homeStatsQuery.data } dataUpdatedAt={ homeStatsQuery.dataUpdatedAt }>
@@ -91,10 +91,10 @@ const ChartsWidgetsList = ({ filterQuery, isError, isPlaceholderData, charts, in
                   <ChartWidgetContainer
                     key={ chart.id }
                     id={ chart.id }
-                    title={ chart.title }
+                    title={ chart.title.replace('ETH','NBC') }
                     description={ chart.description.replace('ETH', 'NBC') }
                     interval={ interval }
-                    units={ chart.units || undefined }
+                    units={ chart.units?.replace('ETH', 'NBC') || undefined }
                     isPlaceholderData={ isPlaceholderData }
                     onLoadingError={ handleChartLoadingError }
                     href={{ pathname: '/stats/[id]', query: { id: chart.id } }}
