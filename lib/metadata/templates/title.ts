@@ -3,7 +3,8 @@ import type { Route } from 'nextjs-routes';
 import config from 'configs/app';
 
 const TEMPLATE_MAP: Record<Route['pathname'], string> = {
-  '/': '%network_name% blockchain explorer - View %network_name% stats',
+  // '/': '%network_name% blockchain explorer - View %network_name% stats',
+  '/': 'NBCoin blockchain explorer - View NBCoin stats',
   '/txs': '%network_name% transactions - %network_name% explorer',
   '/internal-txs': '%network_name% internal transactions - %network_name% explorer',
   '/txs/kettle/[hash]': '%network_name% kettle %hash% transactions',
