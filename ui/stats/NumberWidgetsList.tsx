@@ -27,7 +27,12 @@ const NumberWidgetsList = () => {
     >
       {
         data?.counters?.map(({ id, title, value, units, description }, index) => {
-
+          if (units === 's') {
+            units = 'ms';
+          }
+          if (units === 'ETH') {
+            units = 'NBC';
+          }
           let unitsStr = '';
           if (units && UNITS_WITHOUT_SPACE.includes(units)) {
             unitsStr = units;
