@@ -126,7 +126,7 @@ const TxsStats = () => {
             getLabelFromTitle(txsStatsQuery.data?.transactions_fee_24h?.title) :
             'Transactions fees' }
           value={ txFeeSum24h.toLocaleString(undefined, { maximumFractionDigits: 2 }) }
-          valuePostfix={ thinsp + "ETH" }
+          valuePostfix={ thinsp + config.chain.currency.symbol?.replace("ETH","NBC") }
           period="24h"
           isLoading={ isLoading }
           href={ config.features.stats.isEnabled ? { pathname: '/stats/[id]', query: { id: 'txnsFee' } } : undefined }
@@ -139,7 +139,7 @@ const TxsStats = () => {
             'Avg. transaction fee' }
           value={ txFeeAvg.usd ? txFeeAvg.usd : txFeeAvg.valueStr }
           valuePrefix={ txFeeAvg.usd ? '$' : undefined }
-          valuePostfix={ txFeeAvg.usd ? undefined : thinsp + "ETH" }
+          valuePostfix={ txFeeAvg.usd ? undefined : thinsp + config.chain.currency.symbol?.replace("ETH","NBC")  }
           period="24h"
           isLoading={ isLoading }
           href={ config.features.stats.isEnabled ? { pathname: '/stats/[id]', query: { id: 'averageTxnFee' } } : undefined }
