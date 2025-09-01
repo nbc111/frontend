@@ -141,7 +141,7 @@ const Stats = () => {
           statsData?.average_block_time?.value ?
             Number(statsData.average_block_time.value).toFixed(1) :
             (apiData!.average_block_time / 1000).toFixed(1)
-        }ms`,
+        }s`,
         isLoading,
       },
       (statsData?.total_transactions?.value || apiData?.total_transactions) && {
