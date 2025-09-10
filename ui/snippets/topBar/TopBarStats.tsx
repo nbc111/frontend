@@ -19,7 +19,7 @@ const TopBarStats = () => {
 
 
   const { data: newData, isLoading, isError: isNewError } = useExternalApiQuery<{ last: string; symbol: string }>(
-    'https://www.nbcex.com/v1/rest/api/market/ticker?symbol=nbcusdt&accessKey=3PswIE0Z9w26R9MC5XrGU8b6LD4bQIWWO1x3nwix1xI'
+    '/api/proxy/ticker?symbol=nbcusdt&accessKey=3PswIE0Z9w26R9MC5XrGU8b6LD4bQIWWO1x3nwix1xI'
   );
   
   const { data, isPlaceholderData, isError, refetch, dataUpdatedAt } = useApiQuery('general:stats', {
