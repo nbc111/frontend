@@ -35,18 +35,18 @@ export function useExternalApiQuery<T = unknown, E = unknown>(
   queryOptions?: Partial<UseQueryOptions<T, E>>
 ) {
   return useQuery<T, E>({
-    queryKey: [ 'external-api', url ], 
-    queryFn: async({ signal }) => { 
+    queryKey: ['external-api', url],
+    queryFn: async({ signal }) => {
       const response = await fetch(url, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-        }, 
+        },
         signal,
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${ response.status }`); 
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       return response.json() as Promise<T>;
@@ -54,6 +54,7 @@ export function useExternalApiQuery<T = unknown, E = unknown>(
     ...queryOptions,
   });
 }
+
 export default function useApiQuery<R extends ResourceName, E = unknown, D = ResourcePayload<R>>(
   resource: R,
   { queryOptions, pathParams, queryParams, fetchParams, logError, chainSlug }: Params<R, E, D> = {},
