@@ -32,10 +32,10 @@ export function getResourceKey<R extends ResourceName>(resource: R, { pathParams
 
 export function useExternalApiQuery<T = unknown, E = unknown>(
   url: string,
-  queryOptions?: Partial<UseQueryOptions<T, E>>
+  queryOptions?: Partial<UseQueryOptions<T, E>>,
 ) {
   return useQuery<T, E>({
-    queryKey: ['external-api', url],
+    queryKey: [ 'external-api', url ],
     queryFn: async({ signal }) => {
       const response = await fetch(url, {
         method: 'GET',
@@ -46,10 +46,10 @@ export function useExternalApiQuery<T = unknown, E = unknown>(
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error! status: ${ response.status }`);
       }
 
-      return response.json() as Promise<T>;
+      return await response.json() as Promise<T>;
     },
     ...queryOptions,
   });
