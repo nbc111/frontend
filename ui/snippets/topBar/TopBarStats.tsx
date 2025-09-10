@@ -17,6 +17,11 @@ import GetGasButton from './GetGasButton';
 const TopBarStats = () => {
   const isMobile = useIsMobile();
 
+
+  const { newData, isLoading, isError } = useExternalApiQuery<{ last: string; symbol: string }>(
+    'https://www.nbcex.com/v1/rest/api/market/ticker?symbol=nbcusdt&accessKey=3PswIE0Z9w26R9MC5XrGU8b6LD4bQIWWO1x3nwix1xI'
+  );
+  
   const { data, isPlaceholderData, isError, refetch, dataUpdatedAt } = useApiQuery('general:stats', {
     queryOptions: {
       placeholderData: HOMEPAGE_STATS,
@@ -57,6 +62,7 @@ const TopBarStats = () => {
     >
       { data?.coin_price && (
         <Flex columnGap={ 1 }>
+          {{newData}}
           <Skeleton loading={ isPlaceholderData }>
             <chakra.span color="text.secondary">{ config.chain.currency.symbol } 1231231 </chakra.span>
             <span>${ Number(data.coin_price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 6 }) }</span>
