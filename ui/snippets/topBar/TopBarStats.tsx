@@ -19,7 +19,7 @@ const TopBarStats = () => {
 
 
   const { data: newData, isLoading, isError: isNewError } = useExternalApiQuery<{ last: string; symbol: string }>(
-    '/api/proxy/ticker?symbol=nbcusdt&accessKey=3PswIE0Z9w26R9MC5XrGU8b6LD4bQIWWO1x3nwix1xI'
+    '/api/proxy/ticker?symbol=nbcusdt&accessKey=3PswIE0Z9w26R9MC5XrGU8b6LD4bQIWWO1x3nwix1xI='
   );
   
   const { data, isPlaceholderData, isError, refetch, dataUpdatedAt } = useApiQuery('general:stats', {
@@ -63,8 +63,8 @@ const TopBarStats = () => {
       { data?.coin_price && (
         <Flex columnGap={ 1 }>
           <Skeleton loading={ isPlaceholderData }>
-            <chakra.span color="text.secondary">{ config.chain.currency.symbol }     {JSON.stringify(newData)} </chakra.span>
-            <span>${ Number(data.coin_price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 6 }) }</span>
+            <chakra.span color="text.secondary">{ config.chain.currency.symbol } </chakra.span>
+            <span>${ Number(newData?.data?.last).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 6 }) }</span>
           </Skeleton>
           { data.coin_price_change_percentage && (
             <Skeleton loading={ isPlaceholderData }>
