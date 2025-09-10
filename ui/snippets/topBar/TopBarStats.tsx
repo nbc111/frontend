@@ -84,7 +84,7 @@ const TopBarStats = () => {
           { data.coin_price_change_percentage && (
             <Skeleton loading={ isPlaceholderData }>
               <chakra.span color={ Number(data.coin_price_change_percentage) >= 0 ? 'green.500' : 'red.500' }>
-                { Number(data.coin_price_change_percentage).toFixed(2) }%
+                { Number(newData?.data?.chg).toFixed(2) }%
               </chakra.span>
             </Skeleton>
           ) }
