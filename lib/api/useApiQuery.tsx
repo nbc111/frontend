@@ -30,6 +30,30 @@ export function getResourceKey<R extends ResourceName>(resource: R, { pathParams
   return [ resource, chainSlug ].filter(Boolean);
 }
 
+export function useExternalApiQuery<T = unknown, E = unknown>(
+  url: string,
+  queryOptions?: Partial<UseQueryOptions<T, E>>
+) {
+  return useQuery<T, E>({
+    queryKey: ['external-api', url], // 使用 URL 作为查询键的一部分
+    queryFn: async ({ signal }) => {
+      const response = await fetch(url, {
+        method: 'GET', 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        signal,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      return response.json() as Promise<T>;
+    },
+    ...queryOptions,
+  });
+}
 export default function useApiQuery<R extends ResourceName, E = unknown, D = ResourcePayload<R>>(
   resource: R,
   { queryOptions, pathParams, queryParams, fetchParams, logError, chainSlug }: Params<R, E, D> = {},
