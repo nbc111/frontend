@@ -14,11 +14,26 @@ import TextSeparator from 'ui/shared/TextSeparator';
 
 import GetGasButton from './GetGasButton';
 
+interface TickerApiResponse {
+  status: string;
+  message: string | null;
+  data: {
+    tradeName: string;
+    buy: number;
+    sell: number;
+    high: number;
+    low: number;
+    last: number; 
+    open: number;
+    chg: number;
+    vol24hour: number;
+  };
+}
 const TopBarStats = () => {
   const isMobile = useIsMobile();
 
 
-  const { data: newData, isLoading, isError: isNewError } = useExternalApiQuery<{ last: string; symbol: string }>(
+  const { data: newData, isLoading, isError: isNewError } = useExternalApiQuery<{TickerApiResponse>(
     '/api/proxy/ticker?symbol=nbcusdt&accessKey=3PswIE0Z9w26R9MC5XrGU8b6LD4bQIWWO1x3nwix1xI='
   );
   
@@ -64,7 +79,7 @@ const TopBarStats = () => {
         <Flex columnGap={ 1 }>
           <Skeleton loading={ isPlaceholderData }>
             <chakra.span color="text.secondary">{ config.chain.currency.symbol } </chakra.span>
-            <span>${ Number(newData?.data?.last).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 6 }) }</span>
+            <span>${ newData?.data?.last }</span>
           </Skeleton>
           { data.coin_price_change_percentage && (
             <Skeleton loading={ isPlaceholderData }>
