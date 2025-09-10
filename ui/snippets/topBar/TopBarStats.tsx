@@ -79,7 +79,7 @@ const TopBarStats = () => {
         <Flex columnGap={ 1 }>
           <Skeleton loading={ isPlaceholderData }>
             <chakra.span color="text.secondary">{ config.chain.currency.symbol } </chakra.span>
-            <span>${ newData?.data?.last }</span>
+            <span>${ newData?.data?.buy }</span>
           </Skeleton>
           { data.coin_price_change_percentage && (
             <Skeleton loading={ isPlaceholderData }>
