@@ -23,7 +23,7 @@ interface TickerApiResponse {
     sell: number;
     high: number;
     low: number;
-    last: number; 
+    last: number;
     open: number;
     chg: number;
     vol24hour: number;
@@ -33,7 +33,7 @@ const TopBarStats = () => {
   const isMobile = useIsMobile();
 
 
-  const { data: newData, isLoading, isError: isNewError } = useExternalApiQuery<{TickerApiResponse>(
+  const { data: newData, isLoading, isError: isNewError } = useExternalApiQuery<TickerApiResponse>(
     '/api/proxy/ticker?symbol=nbcusdt&accessKey=3PswIE0Z9w26R9MC5XrGU8b6LD4bQIWWO1x3nwix1xI='
   );
   
