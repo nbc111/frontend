@@ -2,7 +2,7 @@ import { Flex, chakra } from '@chakra-ui/react';
 import React from 'react';
 
 import config from 'configs/app';
-import useApiQuery from 'lib/api/useApiQuery';
+import useApiQuery, { useExternalApiQuery } from 'lib/api/useApiQuery';
 import dayjs from 'lib/date/dayjs';
 import useIsMobile from 'lib/hooks/useIsMobile';
 import { HOMEPAGE_STATS } from 'stubs/stats';
