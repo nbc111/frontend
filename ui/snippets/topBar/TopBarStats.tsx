@@ -116,11 +116,11 @@ const TopBarStats = () => {
         <>
           <TextSeparator color="border.divider"/>
           <Link href="https://nbcoin.top/" target="_blank" rel="noopener noreferrer" color="text.secondary" _hover={{ color: 'blue.400' }}>
-            链官网
+            NBC Website
           </Link>
           <TextSeparator color="border.divider"/>
           <Link href="https://download.zkbwallets.xyz/" target="_blank" rel="noopener noreferrer" color="text.secondary" _hover={{ color: 'blue.400' }}>
-            钱包宣导页
+            ZKB Wallet
           </Link>
         </>
       ) }
