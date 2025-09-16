@@ -115,11 +115,11 @@ const TopBarStats = () => {
       { data?.gas_prices && data.gas_prices.average !== null && config.features.gasTracker.isEnabled && (
         <>
           <TextSeparator color="border.divider"/>
-          <Link href="https://nbcoin.top/" target="_blank" rel="noopener noreferrer" color="text.secondary" _hover={{ color: 'text.primary' }}>
+          <Link href="https://nbcoin.top/" target="_blank" rel="noopener noreferrer" color="text.secondary" _hover={{ color: 'blue.400' }}>
             链官网
           </Link>
           <TextSeparator color="border.divider"/>
-          <Link href="https://download.zkbwallets.xyz/" target="_blank" rel="noopener noreferrer" color="text.secondary" _hover={{ color: 'text.primary' }}>
+          <Link href="https://download.zkbwallets.xyz/" target="_blank" rel="noopener noreferrer" color="text.secondary" _hover={{ color: 'blue.400' }}>
             钱包宣导页
           </Link>
         </>
