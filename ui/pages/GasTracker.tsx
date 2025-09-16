@@ -6,7 +6,7 @@ import {
 import React from 'react';
 
 import config from 'configs/app';
-import useApiQuery from 'lib/api/useApiQuery';
+import useApiQuery, { useExternalApiQuery } from 'lib/api/useApiQuery';
 import dayjs from 'lib/date/dayjs';
 import { HOMEPAGE_STATS } from 'stubs/stats';
 import { Alert } from 'toolkit/chakra/alert';
@@ -20,7 +20,27 @@ import GasInfoUpdateTimer from 'ui/shared/gas/GasInfoUpdateTimer';
 import NativeTokenIcon from 'ui/shared/NativeTokenIcon';
 import PageTitle from 'ui/shared/Page/PageTitle';
 
+interface TickerApiResponse {
+  status: string;
+  message: string | null;
+  data: {
+    tradeName: string;
+    buy: number;
+    sell: number;
+    high: number;
+    low: number;
+    last: number;
+    open: number;
+    chg: number;
+    vol24hour: number;
+  };
+}
+
 const GasTracker = () => {
+  const { data: newData, isLoading: isNewLoading, isError: isNewError } = useExternalApiQuery<TickerApiResponse>(
+    '/api/proxy/ticker?symbol=nbcusdt&accessKey=3PswIE0Z9w26R9MC5XrGU8b6LD4bQIWWO1x3nwix1xI='
+  );
+
   const { data, isPlaceholderData, isError, error, dataUpdatedAt } = useApiQuery('general:stats', {
     queryOptions: {
       placeholderData: HOMEPAGE_STATS,
@@ -65,7 +85,7 @@ const GasTracker = () => {
         <Skeleton loading={ isLoading } ml={{ base: 0, lg: 'auto' }} whiteSpace="pre" display="flex" alignItems="center">
           <NativeTokenIcon mr={ 2 } boxSize={ 6 }/>
           <chakra.span color="text.secondary">{ config.chain.currency.symbol }</chakra.span>
-          <span> ${ Number(data.coin_price).toLocaleString(undefined, { maximumFractionDigits: 2 }) }</span>
+          <span> ${ newData?.data?.buy }</span>
         </Skeleton>
       ) }
     </Flex>
