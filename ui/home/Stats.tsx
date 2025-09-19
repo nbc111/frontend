@@ -38,7 +38,15 @@ const Stats = () => {
     },
   });
 
-  const isPlaceholderData = statsQuery.isPlaceholderData || apiQuery.isPlaceholderData;
+  // 添加blocks查询来获取height字段
+  const blocksQuery = useApiQuery('general:homepage_blocks', {
+    queryOptions: {
+      refetchOnMount: false,
+      placeholderData: [],
+    },
+  });
+
+  const isPlaceholderData = statsQuery.isPlaceholderData || apiQuery.isPlaceholderData || blocksQuery.isPlaceholderData;
 
   React.useEffect(() => {
     if (!isPlaceholderData && !apiQuery.data?.gas_prices?.average) {
@@ -84,7 +92,7 @@ const Stats = () => {
     }
   })();
 
-  if (apiQuery.isError || statsQuery.isError || latestBatchQuery?.isError) {
+  if (apiQuery.isError || statsQuery.isError || latestBatchQuery?.isError || blocksQuery.isError) {
     return null;
   }
 
@@ -97,8 +105,18 @@ const Stats = () => {
   const apiData = apiQuery.data;
   const statsData = statsQuery.data;
 
+  // 计算总区块数（从blocks API获取最大height值）
+  const totalBlocksFromHeight = React.useMemo(() => {
+    if (!blocksQuery.data || blocksQuery.data.length === 0) {
+      return null;
+    }
+    // 从blocks数组中获取最大的height值
+    const maxHeight = Math.max(...blocksQuery.data.map(block => block.height));
+    return maxHeight.toString();
+  }, [blocksQuery.data]);
+
   const items: Array<Item> = (() => {
-    if (!statsData && !apiData) {
+    if (!statsData && !apiData && !totalBlocksFromHeight) {
       return [];
     }
 
@@ -125,13 +143,13 @@ const Stats = () => {
         href: { pathname: '/batches' as const },
         isLoading,
       },
-      (statsData?.total_blocks?.value || apiData?.total_blocks) && {
+      (totalBlocksFromHeight || statsData?.total_blocks?.value || apiData?.total_blocks) && {
         id: 'total_blocks' as const,
         icon: 'block_slim' as const,
         label: statsData?.total_blocks?.title || 'Total blocks',
-        value: Number(statsData?.total_blocks?.value || apiData?.total_blocks).toLocaleString(),
+        value: Number(totalBlocksFromHeight || statsData?.total_blocks?.value || apiData?.total_blocks).toLocaleString(),
         href: { pathname: '/blocks' as const },
-        isLoading,
+        isLoading: blocksQuery.isPlaceholderData || isLoading,
       },
       (statsData?.average_block_time?.value || apiData?.average_block_time) && {
         id: 'average_block_time' as const,
