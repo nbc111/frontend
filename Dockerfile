@@ -123,7 +123,8 @@ RUN cd ./deploy/tools/multichain-config-generator && yarn build
 # *****************************
 # Production image, copy all the files and run next
 FROM node:22.11.0-alpine AS runner
-RUN apk add --no-cache --upgrade bash curl jq unzip libc6-compat
+RUN apk add --no-cache --upgrade bash curl jq unzip
+# RUN apk add --no-cache --upgrade bash curl jq unzip libc6-compat
 
 ### APP
 WORKDIR /app
