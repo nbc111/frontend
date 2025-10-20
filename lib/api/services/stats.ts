@@ -3,23 +3,23 @@ import type * as stats from '@blockscout/stats-types';
 
 export const STATS_API_RESOURCES = {
   counters: {
-    path: '/api/v1/counters',
+    path: '/api/v2/stats',
   },
   lines: {
-    path: '/api/v1/lines',
+    path: '/api/v2/stats/charts/transactions',
   },
   line: {
-    path: '/api/v1/lines/:id',
+    path: '/api/v2/stats/charts/transactions',
     pathParams: [ 'id' as const ],
   },
   pages_main: {
-    path: '/api/v1/pages/main',
+    path: '/api/v2/main-page/blocks',
   },
   pages_transactions: {
-    path: '/api/v1/pages/transactions',
+    path: '/api/v2/main-page/transactions',
   },
   pages_contracts: {
-    path: '/api/v1/pages/contracts',
+    path: '/api/v2/main-page/contracts',
   },
 } satisfies Record<string, ApiResource>;
 
