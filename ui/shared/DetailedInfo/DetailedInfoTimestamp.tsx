@@ -18,11 +18,11 @@ const DetailedInfoTimestamp = ({ timestamp, isLoading, noIcon, gap }: Props) => 
     <>
       { !noIcon && <IconSvg name="clock" boxSize={ 5 } color="gray.500" isLoading={ isLoading } mr={ 2 }/> }
       <Skeleton loading={ isLoading }>
-        { dayjs(timestamp).fromNow() }
+        { dayjs.utc(timestamp).local().fromNow() }
       </Skeleton>
       <TextSeparator color="gray.500" mx={ gap ?? 3 }/>
       <Skeleton loading={ isLoading } whiteSpace="normal">
-        { dayjs(timestamp).format('llll') }
+        { dayjs.utc(timestamp).local().format('llll') }
       </Skeleton>
     </>
   );

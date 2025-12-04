@@ -5,6 +5,7 @@ import localizedFormat from 'dayjs/plugin/localizedFormat';
 import minMax from 'dayjs/plugin/minMax';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import updateLocale from 'dayjs/plugin/updateLocale';
+import utc from 'dayjs/plugin/utc';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 
 import { nbsp } from 'toolkit/utils/htmlEntities';
@@ -32,6 +33,7 @@ dayjs.extend(relativeTime, relativeTimeConfig);
 dayjs.extend(updateLocale);
 dayjs.extend(localizedFormat);
 dayjs.extend(duration);
+dayjs.extend(utc);
 dayjs.extend(weekOfYear);
 dayjs.extend(minMax);
 

@@ -42,7 +42,7 @@ function getUpdateParams(ts: string | number) {
 }
 
 export default function useTimeAgoIncrement(ts: string | number | null, isEnabled?: boolean) {
-  const [ value, setValue ] = React.useState(ts ? dayjs(ts).fromNow() : null);
+  const [ value, setValue ] = React.useState(ts ? dayjs.utc(ts).local().fromNow() : null);
 
   React.useEffect(() => {
     if (ts !== null) {
@@ -58,10 +58,10 @@ export default function useTimeAgoIncrement(ts: string | number | null, isEnable
         let intervalId: number;
 
         const startTimeoutId = window.setTimeout(() => {
-          setValue(dayjs(ts).fromNow());
+          setValue(dayjs.utc(ts).local().fromNow());
 
           intervalId = window.setInterval(() => {
-            setValue(dayjs(ts).fromNow());
+            setValue(dayjs.utc(ts).local().fromNow());
           }, interval);
 
           intervals.push(intervalId);
@@ -76,11 +76,11 @@ export default function useTimeAgoIncrement(ts: string | number | null, isEnable
         timeouts.push(endTimeoutId);
       };
 
-      setValue(dayjs(ts).fromNow());
+      setValue(dayjs.utc(ts).local().fromNow());
 
       isEnabled && startIncrement();
 
-      !isEnabled && setValue(dayjs(ts).fromNow());
+      !isEnabled && setValue(dayjs.utc(ts).local().fromNow());
 
       return () => {
         timeouts.forEach(window.clearTimeout);
